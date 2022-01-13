@@ -125,8 +125,9 @@ double intensity_integral(
           double optdepth1 = optdepth[m*N_beta*2 + n*2 + 0];
           double I_r_mn = std::exp( - optdepth1 );
 
-          double Ip_S_mn = Smn / M_PI / r_Rs_mn.abs() / r_Rs_mn.abs()
-                      * I_r_mn * r_R_mn.n()%r_p.n() * r_Rs_mn.n()%r_R_mn.n(); /* 無損失散乱光 */
+          double Ip_S_mn = Reflection_Coefficient * Smn / M_PI / r_Rs_mn.abs() / r_Rs_mn.abs()
+            * I_r_mn * r_R_mn.n()%r_s(date) * r_Rs_mn.n()%r_R_mn.n(); /* 無損失散乱光 */
+            //                      * I_r_mn * r_R_mn.n()%r_p.n() * r_Rs_mn.n()%r_R_mn.n(); /* 無損失散乱光 */
           /* 損失散乱光 */
           double optdepth2 = optdepth[m*N_beta*2 + n*2 + 1];
           double I_S_mn = Ip_S_mn * std::exp( - optdepth2 );
